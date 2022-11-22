@@ -6,17 +6,19 @@ export const RegisterPage = () => {
     const navigate = useNavigate();
 
     const [error, setError] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleRegister = (e) => {
-        e.preventDefault();
+    const handleRegister = (event) => {
+        event.preventDefault();
         fetch(`${BASE_URL}/auth/register`, {
             method:'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: 'test123@gmail.com',
-                password: 'test123'
+                email: email,
+                password: password
             })
         })
         .then(res => res.json())
@@ -25,17 +27,20 @@ export const RegisterPage = () => {
             if (data.err) {
                 setError(data.err);
             } else {
-                navigate("/");
+                navigate('/login')
             }
         })
     }
+
+    const handleEmailChange = (event) => setEmail(event.target.value);
+    const handlePasswordChange = (event) => setPassword(event.target.value);
 
     return (
         <div>
             {error && <h3>{error}</h3>}
             <form onSubmit={handleRegister}>
-                <input placeholder="Email" type={"email"} />
-                <input placeholder="Password" type={"password"}/>
+                <input placeholder="Email" type={"email"}  onChange={handleEmailChange} />
+                <input placeholder="Password" type={"password"} onChange={handlePasswordChange} />
                 <button>Register</button>
             </form>
         </div>
