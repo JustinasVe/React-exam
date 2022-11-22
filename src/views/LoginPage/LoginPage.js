@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../utils/constants";
 
-
-export const LoginPage = () => {
+const LoginPage = ({ onLogin }) => {
     const navigate = useNavigate();
 
     const [error, setError] = useState('');
@@ -12,6 +11,7 @@ export const LoginPage = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
+
         fetch(`${BASE_URL}/auth/login`, {
             method: 'POST',
             headers: {
@@ -29,10 +29,13 @@ export const LoginPage = () => {
                 setError(data.err);
             } else {
                 localStorage.setItem("token", data.token) 
-                navigate('/')
+                
             }
         })
+        onLogin(email)
+        navigate('/')
     }
+
 
     const handleEmailChange = (event) => setEmail(event.target.value);
     const handlePasswordChange = (event) => setPassword(event.target.value);
@@ -48,3 +51,5 @@ export const LoginPage = () => {
         </div>
     )
 }
+
+export default LoginPage;

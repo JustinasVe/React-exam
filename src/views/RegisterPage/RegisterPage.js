@@ -2,7 +2,7 @@ import { BASE_URL } from "../../utils/constants";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-export const RegisterPage = () => {
+const RegisterPage = () => {
     const navigate = useNavigate();
 
     const [error, setError] = useState('');
@@ -46,3 +46,5 @@ export const RegisterPage = () => {
         </div>
     )
 };
+
+export default RegisterPage;
