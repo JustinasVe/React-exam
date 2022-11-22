@@ -1,6 +1,7 @@
 import { BASE_URL } from "../../utils/constants";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { ErrorMessage } from "../../utils/ErrorMessageStyled";
 
 const RegisterPage = () => {
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ const RegisterPage = () => {
 
     return (
         <div>
-            {error && <h3>{error}</h3>}
+            {error && <ErrorMessage>{error}</ErrorMessage>}
             <form onSubmit={handleRegister}>
                 <input placeholder="Email" type={"email"}  onChange={handleEmailChange} />
                 <input placeholder="Password" type={"password"} onChange={handlePasswordChange} />

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../utils/constants";
+import { ErrorMessage } from "../../utils/ErrorMessageStyled";
 
 const LoginPage = ({ onLogin }) => {
     const navigate = useNavigate();
@@ -42,7 +43,7 @@ const LoginPage = ({ onLogin }) => {
 
     return (
         <div>
-            {error && <h3>{error}</h3>}
+            {error && <ErrorMessage>{error}</ErrorMessage>}
             <form onSubmit={handleLogin} >
                 <input placeholder="Email" type={"email"} onChange={handleEmailChange}/>
                 <input placeholder="Password" type={"password"} onChange={handlePasswordChange}/>
